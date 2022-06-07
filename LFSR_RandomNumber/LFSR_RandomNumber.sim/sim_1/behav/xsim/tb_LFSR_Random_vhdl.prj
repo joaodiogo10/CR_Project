@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../LFSR_RandomNumber.srcs/sources_1/new/LFSR_Random.vhd" \
+"../../../../LFSR_RandomNumber.srcs/sim_1/new/tb_LFSR_Random.vhd" \
+
+# Do not sort compile order
+nosort
