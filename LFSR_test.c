@@ -6,7 +6,18 @@
 #include "xil_printf.h"
 
 #define WORD_LENGTH 32
-#define RESULT_LENGTH 10
+#define NUMBER_OF_ELEMENTS 10
+
+void PrintDataArray(unsigned int *pData)
+{
+    unsigned int *p;
+
+    xil_printf("\n\r");
+    for (p = pData; p < pData + NUMBER_OF_ELEMENTS; p++)
+    {
+        xil_printf("%08x  ", *p);
+    }
+}
 
 void ResetPerformanceTimer()
 {
@@ -33,13 +44,33 @@ unsigned int StopAndGetPerformanceTimer()
     return GetPerformanceTimer();
 }
 
-void get_new_random_sw(unsigned int *number)
+void get_new_random_sw(unsigned int *pDst, unsigned int seed)
 {
-    unsigned int new_bit;
-    for (int i = 0; i < WORD_LENGTH; i++)
+    unsigned int number = seed;
+    unsigned int new_bit = 0;
+
+    unsigned int *p;
+    for (p = pDst; p < pDst + NUMBER_OF_ELEMENTS; p++)
     {
-        new_bit = ((*number >> 31) ^ (*number >> 30) ^ (*number >> 29) ^ (*number >> 9)) & 0x01;
-        *number = (*number >> 1) | (new_bit << 31);
+        for (int i = 0; i < WORD_LENGTH; i++)
+        {
+            new_bit = ((number >> 31) ^ (number >> 30) ^ (number >> 29) ^ (number >> 9)) & 0x01;
+            number = (number >> 1) | (new_bit << 31);
+        }
+        *p = number;
+    }
+}
+
+void get_new_random_hw(unsigned int *pDst, unsigned int seed, unsigned int size)
+{
+    putfslx(seed, 0, FSL_DEFAULT);
+
+    unsigned int *p;
+
+    for (p = pDst; p < pDst + size; p++)
+    {
+        xil_printf("Test: %d", *p);
+        getfslx(*p, 0, FSL_DEFAULT);
     }
 }
 
