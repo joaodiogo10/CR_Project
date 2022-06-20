@@ -46,9 +46,7 @@ architecture Behavioral of LFSR_Random is
 --     lfsr = (lfsr >> 1) | (bit << 15);
 --taps 32 31 30 10
     signal s_count : natural := 0;
-    signal s_state : std_logic_vector(31 downto 0) := X"00000000";
-    signal s_number : std_logic_vector(31 downto 0) := X"00000000";
-    signal s_generating : std_logic := '0';
+    signal s_state : std_logic_vector(31 downto 0) := X"FA111111";  -- default seed
 
 begin
     
@@ -59,25 +57,20 @@ begin
             if(load  = '1') then
                 s_state <= seed;        
                 s_count <= 0;
-                s_generating <= '0';
-                
+              
             -- generating random number
-            elsif(s_generating = '1' and s_count /= 32) then
+            elsif(s_count /= 32) then
                 s_state <= (s_state(31) xor s_state(30) xor s_state(29) xor s_state(9)) & s_state(31 downto 1);
-                s_number <= (s_state(31) xor s_state(30) xor s_state(29) xor s_state(9)) & s_number(31 downto 1);
                 s_count <= s_count + 1;
-    
+
             -- start new random number
             elsif(gen = '1') then
                 s_state <= (s_state(31) xor s_state(30) xor s_state(29) xor s_state(9)) & s_state(31 downto 1);
-                s_number <= (s_state(31) xor s_state(30) xor s_state(29) xor s_state(9)) & s_number(31 downto 1);
-                s_generating <= '1';
                 s_count <= 1;
             end if;
-    
         end if;
     end process;
     
     valid <= '1' when s_count = 32 else '0';
-    number <= s_number;
+    number <= s_state;
 end Behavioral;

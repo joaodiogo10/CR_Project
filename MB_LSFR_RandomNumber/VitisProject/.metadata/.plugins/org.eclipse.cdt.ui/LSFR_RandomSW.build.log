@@ -1,0 +1,26 @@
+14:44:05 **** Build of configuration Debug for project LSFR_RandomSW ****
+make all 
+'Building file: ../src/lsfrTest.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lsfrTest.o" -ID:/CR/Projeto/MB_LSFR_RandomNumber/VitisProject/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_microblaze_0/bspinclude/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/lsfrTest.d" -MT"src/lsfrTest.o" -o "src/lsfrTest.o" "../src/lsfrTest.c"
+'Finished building: ../src/lsfrTest.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -ID:/CR/Projeto/MB_LSFR_RandomNumber/VitisProject/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_microblaze_0/bspinclude/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: LSFR_RandomSW.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -LD:/CR/Projeto/MB_LSFR_RandomNumber/VitisProject/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_microblaze_0/bsplib/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "LSFR_RandomSW.elf"  ./src/lsfrTest.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: LSFR_RandomSW.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size LSFR_RandomSW.elf  |tee "LSFR_RandomSW.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   8832	    352	  34848	  44032	   ac00	LSFR_RandomSW.elf
+'Finished building: LSFR_RandomSW.elf.size'
+' '
+
+14:44:09 Build Finished (took 4s.37ms)
+

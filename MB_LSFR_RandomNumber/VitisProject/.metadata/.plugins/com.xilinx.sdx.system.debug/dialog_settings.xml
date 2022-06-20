@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="LSFR_RandomSW_system-imgFile" value=""/>
+	<item key="LSFR_RandomSW_system-offSet" value=""/>
+	<item key="LSFR_RandomSW_system-initFile" value=""/>
+	<item key="LSFR_RandomSW_system-flashType" value="28f00am29ew-bpi-x16"/>
+	<item key="LSFR_RandomSW_system-verifyFlash" value="false"/>
+	<item key="LSFR_RandomSW_system-blankCheck" value="false"/>
+	<item key="LSFR_RandomSW_system-device" value="Auto Detect"/>
+	<item key="LSFR_RandomSW_system-target" value="Local"/>
+	<item key="programflash.hwplatform" value="LSFR_RandomSW_system"/>
+</section>

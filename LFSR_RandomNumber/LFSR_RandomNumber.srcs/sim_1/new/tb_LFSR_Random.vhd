@@ -53,12 +53,11 @@ architecture Behavioral of tb_LFSR_Random is
         wait for 2 ns;
     end procedure;
     
-    
-    signal s_clk : std_logic := '0';
-    signal s_gen : std_logic := '0';
-    signal s_load : std_logic := '0';
-    signal s_seed : std_logic_vector(31 downto 0) := X"00000000";
-    signal s_valid : std_logic := '0';
+    signal s_clk    : std_logic := '0';
+    signal s_gen    : std_logic := '0';
+    signal s_load   : std_logic := '0';
+    signal s_seed   : std_logic_vector(31 downto 0) := X"10000000";
+    signal s_valid  : std_logic := '0';
     signal s_number : std_logic_vector(31 downto 0) := X"00000000";
     
 begin
@@ -80,6 +79,7 @@ begin
     stim_process : process
         
     begin
+    wait for 500 ns;
         s_load <= '1';
         s_seed <= X"A2B523F5";
         
@@ -106,15 +106,11 @@ begin
 
         wait for 200 ns;
         s_load <= '1';
-        s_gen <= '1';
+        s_gen <= '0';
         s_seed <= X"10000001";
         
         wait until rising_edge(s_clk);
         s_load <= '0';
-        s_gen <= '1';
-        
-        wait until rising_edge(s_clk);
-        s_gen <= '0';
         
         wait for 500 ns;
     end process;
